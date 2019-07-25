@@ -3,16 +3,21 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="ol-3 p-5">
-            <img src="https://instagram.fbeg1-1.fna.fbcdn.net/vp/28271d64c3c5b8b79b2fa740af8960e2/5DC3A8BB/t51.2885-19/s150x150/40101185_665788620471843_8463166592149094400_n.jpg?_nc_ht=instagram.fbeg1-1.fna.fbcdn.net" class="rounded-circle">
-        </divcol-3>
-    </div>
+        <div class="col-3 p-5">
+            <img src="{{$user->profile->profileImage()}}" class="rounded-circle w-100" >
+        </div>
     <div class="col-9 pt-5">
         <div class="d-flex justify-content-between align-items-baseline">
-            <h1>
-               {{$user->username}}
-            </h1>
-            <a href="/p/create">Add New Post</a>
+            <div class="d-flex align-items-center pb-5">
+
+                <div class="h4">{{$user->username}}</div>
+                <button class="btn btn-primary ml-4">Follow</button>
+
+            </div>
+            @can('update', $user->profile)
+                <a href="/p/create">Add New Post</a>
+            @endcan
+
 
         </div>
         @can('update', $user->profile)
